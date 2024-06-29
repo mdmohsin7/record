@@ -15,7 +15,7 @@ func listInputDevices() throws -> [AVAudioSessionPortDescription]? {
   let options: AVAudioSession.CategoryOptions = [.defaultToSpeaker, .allowBluetooth, .mixWithOthers]
   
   do {
-    try audioSession.setCategory(.playAndRecord, options: options)
+    try audioSession.setCategory(.record, options: options)
   } catch {
     throw RecorderError.error(message: "Failed to list inputs", details: "setCategory: \(error.localizedDescription)")
   }
@@ -50,7 +50,7 @@ extension AudioRecordingDelegate {
     let options: AVAudioSession.CategoryOptions = [.defaultToSpeaker, .allowBluetooth, .allowBluetoothA2DP, .mixWithOthers]
     
     do {
-      try audioSession.setCategory(.playAndRecord, options: options)
+      try audioSession.setCategory(.record, options: options)
     } catch {
       throw RecorderError.error(message: "Failed to start recording", details: "setCategory: \(error.localizedDescription)")
     }
